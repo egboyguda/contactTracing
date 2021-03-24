@@ -7,6 +7,7 @@ const path =require('path')
 const qr = require('qrcode')
 const ejsMate = require('ejs-mate')
 require('dotenv').config()
+const PORT = process.env.PORT || 3000
 
 //pag open sa databes
 
@@ -69,6 +70,6 @@ app.use('/scan',scanRoutes)
 
 
 
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
     console.log('app is running on port 3000')
 })
