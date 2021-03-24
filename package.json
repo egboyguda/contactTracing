@@ -21,5 +21,7 @@
     "phil-reg-prov-mun-brgy": "^1.1.0",
     "qrcode": "^1.4.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
 }

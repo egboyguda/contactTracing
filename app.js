@@ -6,9 +6,11 @@ const app = express()
 const path =require('path')
 const qr = require('qrcode')
 const ejsMate = require('ejs-mate')
+require('dotenv').config()
 
 //pag open sa databes
-mongoose.connect('mongodb://localhost/contact-tracing', {
+
+mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useCreateIndex:true,
@@ -31,6 +33,7 @@ app.get("/qrcode",(req,res)=>{
 
 //mga routes
 const userRoutes= require('./routes/user')
+const scanRoutes = require('./routes/estab')
 
 //static file
 app.use(express.static(path.join(__dirname, 'public')))
@@ -40,6 +43,8 @@ app.engine('ejs',ejsMate)
 
 //dd pag gamit sa routes
 app.use('/',userRoutes)
+app.use('/scan',scanRoutes)
+
 
 
 
