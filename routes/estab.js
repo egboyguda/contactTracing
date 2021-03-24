@@ -7,7 +7,7 @@ const router = express.Router({mergeParams:true});
 router.get('/:id',async(req,res)=>{
     const {id} = req.params
     const user = await Person.findById(id)
-
+    console.log(user.name)
     res.send(user.name)
 
 
