@@ -4,6 +4,13 @@ const router = express.Router({mergeParams:true});
 const phil = require('phil-reg-prov-mun-brgy');
 const qr = require('qrcode')
 
+
+
+router.get('/',(req,res)=>{
+    res.send('asdas')
+    //console.log(phil.regions)
+})
+
 router.get('/register',(req,res)=>{
     const regions =phil.regions
     res.render('register',{regions})
