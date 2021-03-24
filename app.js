@@ -25,6 +25,10 @@ db.once('open', function() {
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))
 
+app.get("/qrcode",(req,res)=>{
+  res.render('qrScan')
+})
+
 //mga routes
 const userRoutes= require('./routes/user')
 
