@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate')%> 
+        <div class="row">
+            <h1 class="text-center">REGISTER TO GET QRCODE</h1>
+            <div class="col-6 offset-3">
+                <form action="/register" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+              
+                    
+                    <div class="mb-3">
+                        <label for="regions" class="form-label">Regions</label>
+                        <select name="regions" id="regions" class="form-select">
+                            <option selected>Open this select menu</option>
+                            <% for(region of regions) {%>
+                                <option value="<%= region.reg_code %> "><%=region.name%> <%= region.reg_code %> </option>
+                                <% } %>  
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="province" class="form-label">Province</label>
+                        <select name="province" id="province" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="municipal" class="form-label">Municipal</label>
+                        <select name="municipal" id="municipal" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="barangay" class="form-label">Barangay</label>         
+                    <select name="barangay" id="barangay" class="form-select"></select>
+                    </div>
+            
+                    <input type="submit" value="submit" class="btn btn-success" >
+            
+            
+            
+            
+                </form>
+            </div>
+                
+
+
+
+
+        </div>
+  
+ 

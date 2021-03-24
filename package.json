@@ -1,0 +1,25 @@
+{
+  "name": "contacttracer",
+  "version": "1.0.0",
+  "description": "contacttracing app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ejs": "^3.1.6",
+    "ejs-mate": "^3.0.0",
+    "express": "^4.17.1",
+    "express-partials": "^0.3.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.12.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "phil-reg-prov-mun-brgy": "^1.1.0",
+    "qrcode": "^1.4.4"
+  },
+  "devDependencies": {}
+}
