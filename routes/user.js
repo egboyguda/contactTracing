@@ -7,7 +7,7 @@ const qr = require('qrcode')
 
 
 router.get('/',(req,res)=>{
-    res.send('asdas')
+    res.render('home')
     //console.log(phil.regions)
 })
 
