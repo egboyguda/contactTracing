@@ -9,10 +9,11 @@ function onScanSuccess(qrCodeMessage) {
                 .then(function(res){
                     //p.innerHTML = res.data;
                     alert('Successfully Scan')
+                    html5QrcodeScanner.clear();
                     //document.getElementById('p').textContent+=`Succesfuly Scan`
                 })
                 .then(function(){
-                    html5QrcodeScanner.clear();
+                    
                     window.location ='/qrcode'
                 })
            
