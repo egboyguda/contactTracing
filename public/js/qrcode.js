@@ -11,8 +11,11 @@ function onScanSuccess(qrCodeMessage) {
                     alert('Successfully Scan')
                     //document.getElementById('p').textContent+=`Succesfuly Scan`
                 })
-            html5QrcodeScanner.clear();
-            window.location ='/qrcode'
+                .then(function(){
+                    html5QrcodeScanner.clear();
+                    window.location ='/qrcode'
+                })
+           
         }
 
     var html5QrcodeScanner = new Html5QrcodeScanner(
