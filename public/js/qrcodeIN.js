@@ -1,6 +1,7 @@
 function noop() {}
 async function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
+  html5QrcodeScanner.clear();
   executed = false;
   return function () {
     if (!executed) {
@@ -8,8 +9,8 @@ async function onScanSuccess(qrCodeMessage) {
       axios.post(`/qrcode/scan/${qrCodeMessage}/in`).then(function (res) {
         //p.innerHTML = res.data;
         alert(`Successfully Scan ${res.data.toUpperCase()}`);
+
         window.location = '/qrcode/in';
-        html5QrcodeScanner.clear();
       });
     }
   };
