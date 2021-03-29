@@ -4,16 +4,11 @@ function noop() {
 async function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
   //onScanSuccess = await noop;
-  let excuted = false;
-  if (!excuted) {
-    excuted = true;
-    axios.post(`/qrcode/scan/${qrCodeMessage}/in`).then(function (res) {
-      //p.innerHTML = res.data;
-      alert(`Successfully Scan ${res.data.toUpperCase()}`);
-      window.location = '/qrcode/in';
-      html5QrcodeScanner.clear();
-    });
-  }
+  html5QrcodeScanner.clear();
+  axios.post(`/qrcode/scan/${qrCodeMessage}/in`).then(function (res) {
+    //p.innerHTML = res.data;
+    window.location = '/qrcode/in';
+  });
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner('reader', {
