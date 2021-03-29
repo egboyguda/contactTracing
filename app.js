@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 //pag open sa databes
 
-mongoose.connect('mongodb://localhost/contact-tracing' || process.env.DB_URL, {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
