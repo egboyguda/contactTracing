@@ -5,7 +5,7 @@ async function onScanSuccess(qrCodeMessage) {
   axios.post(`/qrcode/scan/${qrCodeMessage}/out`).then(function (res) {
     //p.innerHTML = res.data;
     alert(`successfuly scan ${res.data}`);
-    window.location = '/qrcode/in';
+    window.location = '/qrcode/out';
   });
 }
 
