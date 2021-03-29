@@ -1,4 +1,4 @@
-function onScanSuccess(qrCodeMessage) {
+async function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
   console.log(qrCodeMessage);
   axios
@@ -20,4 +20,4 @@ var html5QrcodeScanner = new Html5QrcodeScanner('reader', {
   qrbox: 250,
 });
 
-html5QrcodeScanner.render(onScanSuccess);
+html5QrcodeScanner.render(await onScanSuccess);
