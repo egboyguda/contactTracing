@@ -7,6 +7,7 @@ async function onScanSuccess(qrCodeMessage) {
   html5QrcodeScanner.clear();
   axios.post(`/qrcode/scan/${qrCodeMessage}/in`).then(function (res) {
     //p.innerHTML = res.data;
+    alert(`successfuly scan ${res.data}`);
     window.location = '/qrcode/in';
   });
 }
