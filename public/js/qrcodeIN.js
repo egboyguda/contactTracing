@@ -1,6 +1,7 @@
+function noop() {}
 async function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
-  console.log(qrCodeMessage);
+  onScanSuccess = noop;
   axios
     .post(`/qrcode/scan/${qrCodeMessage}/in`)
     .then(function (res) {
