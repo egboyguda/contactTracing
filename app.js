@@ -76,11 +76,11 @@ const qrcodeRoutes = require('./routes/qrcode');
 const establishmentRoutes = require('./routes/estab');
 
 //test register
-// app.get('/fakeuser', async (req, res) => {
-//   const establishment = new Establishment({ name: 'store', username: 'gboy' });
-//   const newUser = await Establishment.register(establishment, 'guda');
-//   res.send(newUser);
-// });
+app.get('/fakeuser', async (req, res) => {
+  const establishment = new Establishment({ name: 'store', username: 'gboy' });
+  const newUser = await Establishment.register(establishment, 'guda');
+  res.send(newUser);
+});
 
 //static file
 app.use(express.static(path.join(__dirname, 'public')));
