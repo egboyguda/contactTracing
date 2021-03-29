@@ -1,18 +1,12 @@
-function onScanSuccess(qrCodeMessage) {
+async function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
-  console.log(qrCodeMessage);
-  axios
-    .post(`/qrcode/scan/${qrCodeMessage}/out`)
-    .then(function (res) {
-      //p.innerHTML = res.data;
-      console.log(res.data);
-      alert(`Successfully Scan ${res.data.toUpperCase()}`);
-      html5QrcodeScanner.clear();
-      //document.getElementById('p').textContent+=`Succesfuly Scan`
-    })
-    .then(function () {
-      window.location = '/qrcode/in';
-    });
+  //onScanSuccess = await noop;
+  html5QrcodeScanner.clear();
+  axios.post(`/qrcode/scan/${qrCodeMessage}/out`).then(function (res) {
+    //p.innerHTML = res.data;
+    alert(`successfuly scan ${res.data}`);
+    window.location = '/qrcode/in';
+  });
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner('reader', {
