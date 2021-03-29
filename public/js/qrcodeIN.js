@@ -6,11 +6,11 @@ function onScanSuccess(qrCodeMessage) {
     .then(function (res) {
       //p.innerHTML = res.data;
       console.log(res.data);
-      alert(`Successfully Scan ${res.data.toUpperCase()}`);
-      html5QrcodeScanner.clear();
       //document.getElementById('p').textContent+=`Succesfuly Scan`
     })
     .then(function () {
+      alert(`Successfully Scan ${res.data.toUpperCase()}`);
+      html5QrcodeScanner.clear();
       window.location = '/qrcode/in';
     });
 }
