@@ -1,0 +1,29 @@
+<% layout('layouts/sidebar')%> 
+
+<div id="barcode">
+    <p class="text-center" id="p"></p>
+    <div  id="reader">
+    </div>  
+</div>
+
+
+<script src="/js/html5-qrcode.min.js"></script>
+<script>
+    async function onScanSuccess(qrCodeMessage) {
+  // handle on success condition with the decoded message
+  //onScanSuccess = await noop;
+    html5QrcodeScanner.clear();
+    axios.get(`/admin/getuser/${qrCodeMessage}`).then(function (res) {
+        document.getElementById('barcode').style.display.none;
+    console.log(res)
+  });
+}
+
+var html5QrcodeScanner = new Html5QrcodeScanner('reader', {
+  fps: 10,
+  qrbox: 250,
+});
+
+html5QrcodeScanner.render(onScanSuccess);
+</script>
+    

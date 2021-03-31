@@ -13,9 +13,8 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const PORT = process.env.PORT || 3000;
 
-//pag open sa databes
-
-mongoose.connect(process.env.DB_URL, {
+//pag open sa databese
+mongoose.connect('mongodb://localhost/contact-tracing', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -74,6 +73,7 @@ app.get('/qrcode', (req, res) => {
 const userRoutes = require('./routes/user');
 const qrcodeRoutes = require('./routes/qrcode');
 const establishmentRoutes = require('./routes/estab');
+const adminRoutes = require('./routes/admin');
 
 //test register
 app.get('/fakeuser', async (req, res) => {
@@ -91,6 +91,7 @@ app.engine('ejs', ejsMate);
 app.use('/', userRoutes);
 app.use('/qrcode', qrcodeRoutes);
 app.use('/estab', establishmentRoutes);
+app.use('/admin', adminRoutes);
 
 app.listen(PORT, () => {
   console.log('app is running on port 3000');

@@ -7,10 +7,11 @@ const activitySchema = new Schema({
     //required: true,
     ref: 'Establishment',
   },
-  name: {
+  person: {
     type: Schema.Types.ObjectId,
     ref: 'Person',
   },
+
   dateIn: {
     type: Date,
   },

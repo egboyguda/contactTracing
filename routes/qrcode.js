@@ -19,12 +19,13 @@ router.get('/out', isLoggedIn, (req, res) => {
 router.post('/scan/:id/in', isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const person = await Person.findById(id);
-  const activity = await new Activity({ name: person, dateIn: new Date() });
+  const activity = await new Activity({ person: person, dateIn: new Date() });
   activity.store = await req.user._id;
   person.activity = await activity;
+  //activity.populate({ path: 'person', select: 'name ' });
   await activity.save();
   await person.save();
-  res.send(person.name);
+  res.send(person.person);
 });
 
 router.post('/scan/:id/out', isLoggedIn, async (req, res) => {
@@ -34,16 +35,14 @@ router.post('/scan/:id/out', isLoggedIn, async (req, res) => {
   let activity = await Activity.find({
     $and: [
       { dateIn: { $lte: new Date() } },
-      { name: { $eq: person } },
+      { person: { $eq: person } },
       { store: { $eq: req.user._id } },
     ],
   });
   activity = await activity[activity.length - 1];
   activity.dateOut = await new Date();
   await activity.save();
-  res.send(person.name);
-
-  console.log(activity);
+  res.send(person.person);
 });
 
 module.exports = router;
