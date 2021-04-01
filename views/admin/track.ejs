@@ -12,6 +12,7 @@
           <th scope="col">Establishment</th>
           <th scope="col">Date In</th>
           <th scope="col">Date Out</th>
+          <th scope="col">Possible Contact Person</th>
         </tr>
       </thead>
       <tbody id="tbody">
@@ -58,10 +59,14 @@ function convertTime (isoTime) {
     for(data of res ){
       const time = new Date(data.dateIn).toLocaleTimeString('en',
                  { timeStyle: 'short', hour12: false, timeZone: 'UTC' });
+                 const time1 = new Date(data.dateOut).toLocaleTimeString('en',
+                 { timeStyle: 'short', hour12: false, timeZone: 'UTC' })           
       body.innerHTML  += `<tr>
         <td>${data.person.name}</td>
         <td>${data.store.name}</td>
         <td>${data.dateIn.substr(0, 10)} ${convertTime(time)}</td>
+        <td>${data.dateOut.substr(0, 10)} ${convertTime(time1)}</td>
+        <td><button type="button" class="btn btn-success">Find</button></td>
         </tr>`
     }
       document.getElementById('tbody').appendChild(trHTML)

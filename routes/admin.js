@@ -1,6 +1,7 @@
 const express = require('express');
 const Person = require('../models/person');
 const Activity = require('../models/activity');
+const { find } = require('../models/person');
 const router = express.Router({ mergeParams: true });
 
 router.get('/', (req, res) => {
@@ -42,5 +43,30 @@ router.get('/getuser/:id', async (req, res) => {
 
   res.json(activity);
   //console.log(activity);
+});
+
+// dd pag find sa mga tawo na nakada sun na timeframe
+router.get('/getuser', async (req, res) => {
+  const { store, dateIn, dateOut } = req.query;
+  const activity = await Activity.find({
+    $and: [
+      {
+        store: { $eq: store },
+      },
+      {
+        dateIn: {
+          $gt: dateIn,
+          $lte: dateOut,
+        },
+      },
+    ],
+  }).populate({
+    //dd kada path na person n papapolate nya
+    path: 'person',
+    populate: { path: 'person' },
+    select: 'name',
+  });
+
+  res.send(activity);
 });
 module.exports = router;
