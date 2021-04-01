@@ -48,6 +48,8 @@ router.get('/getuser/:id', async (req, res) => {
 // dd pag find sa mga tawo na nakada sun na timeframe
 router.get('/getuser', async (req, res) => {
   const { store, dateIn, dateOut } = req.query;
+  let date = await new Date(dateIn);
+  date.setHours(0, 0, 0, 0);
   const activity = await Activity.find({
     $and: [
       {
@@ -55,8 +57,11 @@ router.get('/getuser', async (req, res) => {
       },
       {
         dateIn: {
-          $gt: dateIn,
           $lte: dateOut,
+        },
+        dateIn: {
+          $gte: date,
+          $ne: dateIn,
         },
       },
     ],
