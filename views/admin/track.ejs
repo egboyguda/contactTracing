@@ -1,22 +1,72 @@
 <% layout('layouts/sidebar')%> 
 
-<div id="barcode">
-    <p class="text-center" id="p"></p>
+
+    <p class="text-center mt-5" id="p">Scan QRcode to Trace Activity of The Person</p>
     <div  id="reader">
     </div>  
-</div>
-
+    <h2 class="text-center mt-5">List of Activity</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Establishment</th>
+          <th scope="col">Date In</th>
+          <th scope="col">Date Out</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+      <tr>
+          
+      </tr>
+      </tbody>
+    </table>
 
 <script src="/js/html5-qrcode.min.js"></script>
 <script>
+
+function convertTime (isoTime) {
+  var hours   = parseInt(isoTime.substring(0, 2), 10),
+      minutes = parseInt(isoTime.substring(3, 5), 10),
+      ampm    = 'am';
+
+  if (hours == 12) {
+    ampm = 'pm';
+  } else if (hours == 0) {
+    hours = 12;
+  } else if (hours > 12) {
+    hours -= 12;
+    ampm = 'pm';
+  }
+
+  return hours + ':' + minutes + ' ' + ampm;
+}
+
+  let data;
     async function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
   //onScanSuccess = await noop;
     html5QrcodeScanner.clear();
-    axios.get(`/admin/getuser/${qrCodeMessage}`).then(function (res) {
-        document.getElementById('barcode').style.display.none;
-    console.log(res)
-  });
+    axios.get(`/admin/getuser/${qrCodeMessage}`)
+    .then(function (res) {
+        document.getElementById('reader').style.display= 'none';
+        document.getElementById('p').style.display= 'none';
+        return(res.data)
+    //pwedi ak dd mag himu table 
+  }).then(function(res){
+    
+    let body= document.getElementById('tbody')
+    for(data of res ){
+      const time = new Date(data.dateIn).toLocaleTimeString('en',
+                 { timeStyle: 'short', hour12: false, timeZone: 'UTC' });
+      body.innerHTML  += `<tr>
+        <td>${data.person.name}</td>
+        <td>${data.store.name}</td>
+        <td>${data.dateIn.substr(0, 10)} ${convertTime(time)}</td>
+        </tr>`
+    }
+      document.getElementById('tbody').appendChild(trHTML)
+  })
+  
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner('reader', {

@@ -40,7 +40,7 @@ router.get('/getuser/:id', async (req, res) => {
     });
   //await activity.populate('person');
 
-  res.send(activity);
+  res.json(activity);
   //console.log(activity);
 });
 module.exports = router;
