@@ -76,11 +76,6 @@ const establishmentRoutes = require('./routes/estab');
 const adminRoutes = require('./routes/admin');
 
 //test register
-app.get('/fakeuser', async (req, res) => {
-  const establishment = new Establishment({ name: 'store', username: 'gboy' });
-  const newUser = await Establishment.register(establishment, 'guda');
-  res.send(newUser);
-});
 
 //static file
 app.use(express.static(path.join(__dirname, 'public')));

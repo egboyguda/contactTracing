@@ -1,0 +1,18 @@
+<% layout('layouts/boilerplate')%> 
+
+<h1 class="text-center">List of Contact Person</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+    </thead>
+    <tbody id="tbody">
+    <tr>
+        <% for (data of activity) {%>
+            <th><%=data.person.name  %> </th> 
+            <th><%=data.person.address.municipal%> <%= data.person.address.barangay %>  </th>
+        <% } %> 
+    </tr>
+    </tbody>
+  </table>

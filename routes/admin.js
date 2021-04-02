@@ -2,6 +2,7 @@ const express = require('express');
 const Person = require('../models/person');
 const Activity = require('../models/activity');
 const { find } = require('../models/person');
+const Establishment = require('../models/establishment');
 const router = express.Router({ mergeParams: true });
 
 router.get('/', (req, res) => {
@@ -11,6 +12,18 @@ router.get('/', (req, res) => {
 //dd an route pag add establishment
 router.get('/establishment', (req, res) => {
   res.render('admin/establishment');
+});
+
+//dd pag registr
+router.post('/establishment/add', async (req, res) => {
+  const { name, username, password } = req.body;
+  const establishment = await new Establishment({
+    name: name,
+    username: username,
+  });
+  const newUser = await Establishment.register(establishment, password);
+  res.send(newUser);
+  console.log(req.body);
 });
 
 //dd an route pag track sa tawo
@@ -69,9 +82,8 @@ router.get('/getuser', async (req, res) => {
     //dd kada path na person n papapolate nya
     path: 'person',
     populate: { path: 'person' },
-    select: 'name',
+    select: ['name', 'address'],
   });
-
-  res.send(activity);
+  res.render('admin/contact/table', { activity });
 });
 module.exports = router;

@@ -66,7 +66,7 @@ function convertTime (isoTime) {
         <td>${data.store.name}</td>
         <td>${data.dateIn.substr(0, 10)} ${convertTime(time)}</td>
         <td>${data.dateOut.substr(0, 10)} ${convertTime(time1)}</td>
-        <td><button type="button" class="btn btn-success">Find</button></td>
+        <td> <a href="/admin/getuser?store=${data.store._id}&dateIn=${data.dateIn}&dateOut=${data.dateOut}"><button type="button" class="btn btn-success">Find</button></a></td>
         </tr>`
     }
       document.getElementById('tbody').appendChild(trHTML)
